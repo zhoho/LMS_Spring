@@ -11,7 +11,7 @@
 <body>
 <h1>Welcome to My JSP Page!</h1>
 <main>
-    <img style="width: 20%; height: auto; padding: 20px;" src="${context}/resources/image/fish.png" alt="fish">
+    <img style="width: 20%; height: auto; padding: 20px;" src="${context}/static/fish.png" alt="fish">
 
     <div class="container">
         <c:if test="${empty name}">

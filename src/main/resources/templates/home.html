@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>My Thymeleaf Page</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}">
+    <link th:href="@{/static/css/style.css}" rel="stylesheet" />
 </head>
 <body>
 <h1>Welcome to My Thymeleaf Page!</h1>
 <main>
-    <img style="width: 20%; height: auto; padding: 20px;" th:src="@{/resources/image/fish.png}" alt="fish">
+    <img style="width: 20%; height: auto; padding: 20px;" th:src="@{/static/image/fish.png}" alt="fish">
 
     <div class="container">
         <div th:if="${name == null}">

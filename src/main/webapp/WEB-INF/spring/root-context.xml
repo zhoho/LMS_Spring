@@ -11,10 +11,10 @@
     </bean>
 
     <!-- Datasource -->
-    <bean id="dataSource" class="com.zaxxer.hikari.HikariConfig">
-        <property name="driverClassName" value="${spring.datasource.driver-class-name}"/>
-        <property name="jdbcUrl" value="${spring.datasource.url}"/>
-        <property name="username" value="${spring.datasource.username}"/>
-        <property name="password" value="${spring.datasource.password}"/>
-    </bean>
+<!--    <bean id="dataSource" class="com.zaxxer.hikari.HikariConfig">-->
+<!--        <property name="driverClassName" value="${spring.datasource.driver-class-name}"/>-->
+<!--        <property name="jdbcUrl" value="${spring.datasource.url}"/>-->
+<!--        <property name="username" value="${spring.datasource.username}"/>-->
+<!--        <property name="password" value="${spring.datasource.password}"/>-->
+<!--    </bean>-->
 </beans>
