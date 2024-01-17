@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <link th:href="@{/static/css/login.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="col">
+    <div class="top-bar">
+        <img th:src="@{/static/image/handongLogo-icon.png}" alt="handongLogo" />
+        <div class="text-container">
+            <div class="top-bar-main">HANDONG</div>
+            <div class="top-bar-sub">HANDONG GLOBAL UNIVERSITY</div>
+        </div>
+    </div>
+    <div class="login">
+        <div class="login-txt">Login</div>
+        <div class="input-container">
+            <input type="text" placeholder="ID/CODE" />
+            <input type="text" placeholder="PW" />
+        </div>
+        <hr />
+        <button class="login-btn" id="login-btn">Login</button>
+    </div>
+</div>
+<script th:src="@{/static/js/button.js}"></script>
+</body>
+</html>

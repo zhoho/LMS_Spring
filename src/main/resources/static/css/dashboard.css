@@ -1,0 +1,69 @@
+body {
+  font-family: "Arial", sans-serif;
+}
+
+.main-content {
+  height: calc(100vh - 60px); /* Height adjusted to allow for bottom bar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.main-message {
+  margin-top: 460px;
+  font-size: 30px;
+  padding-bottom: 20px;
+}
+
+.sub-message {
+  font-size: 18px;
+}
+
+.top-bar {
+  display: flex; /* Make the top bar a flex container */
+  justify-content: space-between; /* Space out the title and icons */
+  align-items: center; /* Align items vertically in the center */
+  color: black;
+  padding: 17px;
+  padding-bottom: 23px;
+}
+
+.top-bar .dashboard-title {
+  font-size: 30px;
+}
+
+.top-bar .icons {
+  display: flex; /* Make the icons a flex container, too, if needed */
+}
+
+.top-bar .icons span {
+  padding-left: 30px; /* Add padding to the left of each icon */
+  padding-right: 30px; /* Add padding to the right of each icon */
+}
+
+.btn-add-to-do {
+  color: #00579c;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: auto;
+}
+
+.bottom-line {
+  height: 1px;
+  background-color: grey;
+  width: 100%;
+}
+
+.bottom-text {
+  padding: 10px;
+  color: rgb(128, 128, 128);
+  font-size: 14px;
+  text-align: right;
+  margin-top: 0px;
+  margin-bottom: 25px;
+  margin-left: auto; /* �߰�: ���� ������ �ڵ����� ���� */
+}

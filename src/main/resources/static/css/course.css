@@ -1,0 +1,90 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.board-header h1 {
+  font-size: 24px;
+  color: #333;
+  margin: 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.write-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 420px;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.search-btn {
+  background-color: #666;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.post-list {
+  border-top: 1px solid #ddd;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.post-list p {
+  text-align: center;
+  color: #888;
+}
+
+.course-list {
+  padding: 0 16px; /* 강의 목록의 패딩 지정 */
+}
+
+.course-item {
+  padding: 8px 0; /* 강의 항목의 위아래 패딩 지정 */
+}
+
+.course-title {
+  font-size: 16px; /* 제목의 폰트 크기 지정 */
+  font-weight: bold; /* 제목의 폰트 두께 지정 */
+  color: #333; /* 제목 텍스트 색상 지정 */
+}
+
+.course-subtitle {
+  font-size: 14px; /* 소제목의 폰트 크기 지정 */
+  color: #666; /* 소제목 텍스트 색상 지정 */
+}

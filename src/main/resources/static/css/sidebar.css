@@ -1,0 +1,105 @@
+@media (min-width: 992px) {
+  .col-lg-11-5 {
+    flex: 0 0 95.833333%; /* 11.5 / 12 = 0.95833333 */
+    max-width: 95.833333%; /* 11.5 / 12 = 0.95833333 */
+  }
+}
+
+.sidebar {
+  background-color: #00579c;
+  color: white;
+  width: 60px; /* Adjust width as necessary */
+  height: 100vh; /* Full viewport height */
+  position: fixed; /* Fixed position */
+  top: 0;
+  left: 0;
+  z-index: 1050; /* Ensure it's above other content */
+}
+
+.sidebar-icon {
+  padding-bottom: 7px;
+  padding-top: 3px;
+  display: block;
+  margin: 2px 0;
+  text-align: center;
+}
+.nav-item.handong-icon img {
+  padding-top: 12px;
+  width: 55px; /* 원하는 크기로 조정 */
+  height: 65px; /* 원하는 크기로 조정 */
+}
+.nav-item.myprofile-icon img {
+  width: 25px; /* 원하는 크기로 조정 */
+  height: 25px; /* 원하는 크기로 조정 */
+}
+
+.nav-item.sidebar-icon {
+  transition: background-color 0.3s; /* 부드러운 색상 전환 */
+}
+
+.nav-item.sidebar-icon:hover {
+  background-color: #007bff; /* 마우스 오버 시 색상 */
+}
+
+.nav-item.sidebar-icon.active {
+  background-color: white; /* 클릭 시 색상 */
+  color: #007bff;
+}
+
+.sidebar-header {
+  padding: 20px;
+  color: #333;
+  text-align: left; /* 헤더 텍스트 중앙 정렬 */
+  border-bottom: 1px solid #ddd;
+}
+
+.sidebar-header h2 {
+  margin: 0; /* 기본 마진 제거 */
+  color: black; /* 텍스트 색상 지정 */
+}
+
+.sidebar-header hr {
+  border: none; /* 기본 테두리 제거 */
+  height: 1px;
+  background-color: #ddd; /* 선 색상 지정 */
+  margin-top: 8px; /* 선 위 여백 지정 */
+  margin-bottom: 16px; /* 선 아래 여백 지정 */
+}
+
+.course-list {
+  padding: 0 16px; /* 강의 목록의 패딩 지정 */
+}
+
+.course-item {
+  padding: 8px 0; /* 강의 항목의 위아래 패딩 지정 */
+}
+
+.course-title {
+  font-size: 16px;
+  color: #008ee2; /* 텍스트 색상 */
+}
+
+.course-subtitle {
+  font-size: 12px; /* 소제목의 폰트 크기 지정 */
+  color: #2d3b45; /* 소제목 텍스트 색상 지정 */
+}
+
+.lecture-sidebar {
+  position: fixed;
+  left: -420px; /* 기존 사이드바 너비에 맞춤 */
+  top: 0;
+  width: 420px;
+  height: 100%;
+  background-color: white;
+  border-right: 1px solid #dee2e6;
+  transition: left 0.3s;
+  z-index: 1000;
+  padding: 10px;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2); /* 그림자 추가 */
+}
+
+/* 컨텐츠 영역 크기 조정을 위한 클래스 추가 */
+.content-reduced {
+  transition: margin-left 0.3s;
+  margin-left: 250px; /* `lecture-sidebar` 너비 만큼 추가 */
+}

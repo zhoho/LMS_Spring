@@ -1,0 +1,82 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.board-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.board-header h1 {
+  font-size: 24px;
+  color: #333;
+  margin: 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.write {
+  font-size: 24px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.title-bar {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.title-bar input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.file-input {
+  border-style: solid;
+  padding: 11px;
+  border-width: 1px;
+  border-color: #ddd;
+}
+
+.button {
+  padding-top: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cancel-btn {
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+  padding: 8px 15px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.save-btn {
+  background-color: #337ab7;
+  color: white;
+  border: 1px solid #ddd;
+  padding: 8px 15px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+#markdown-editor {
+  width: 100%; /* 에디터의 너비를 컨테이너의 100%로 설정 */
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/static/css/course.css}" rel="stylesheet" />
+    <link th:href="@{/static/css/sidebar.css}" rel="stylesheet" />
+    <link th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css}" rel="stylesheet"/>
+    <script th:src="@{/static/js/sidebarButtonEvent.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js}"></script>
+    <title>Course</title>
+</head>
+<body style="overflow: auto">
+<div class="container-fluid">
+    <div class="row">
+        <nav class="d-none d-md-block sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item sidebar-icon" id="handong-icon">
+                <span class="nav-item handong-icon">
+                  <img th:src="@{/static/image/handongLogo-icon.png}" alt="handongLogo" />
+                </span>
+                    </li>
+                    <li class="nav-item sidebar-icon">
+                <span class="nav-item myprofile-icon">
+                    <img th:src="@{/static/image/myprofile.png}" alt="myprofile" />
+                </span>
+                    </li>
+                    <li class="nav-item sidebar-icon" id="dashboard-icon">
+                        <span data-feather="check-circle"></span>
+                    </li>
+                    <li class="nav-item sidebar-icon" id="file-text-icon">
+                        <span data-feather="file-text"></span>
+                    </li>
+                    <div id="lecture-sidebar" class="lecture-sidebar">
+                        <div class="sidebar-header">
+                            <h4>Courses</h4>
+                        </div>
+                        <div class="course-list">
+                            <div th:each="course : ${courses}" class="course-item">
+                                <div class="course-title" th:text="${course.name}">
+                                </div>
+                                <div class="course-subtitle" th:text="${course.semester}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <li class="nav-item sidebar-icon">
+                        <span data-feather="calendar"></span>
+                    </li>
+                    <li class="nav-item sidebar-icon">
+                        <span data-feather="inbox"></span>
+                    </li>
+                    <li class="nav-item sidebar-icon">
+                        <span data-feather="help-circle"></span>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <main role="main" class="col-md-11 ml-sm-auto col-lg-11-5 px-md-4">
+            <div class="board-header">
+                <h1>Practical Project1 01 > Practical Project1 01</h1>
+            </div>
+            <div class="button-container">
+                <div class="search-bar">
+                    <label>
+                        <input type="text" placeholder="Title/Author" />
+                    </label>
+                    <button class="search-btn">Search</button>
+                </div>
+                <button class="write-btn">+ Write</button>
+            </div>
+            <div class="post-list">
+                <p>No posts are registered.</p>
+            </div>
+        </main>
+    </div>
+</div>
+</body>
+</html>
