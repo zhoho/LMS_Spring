@@ -63,8 +63,9 @@
                 <h1>Practical Project1 01 > Practical Project1 01</h1>
             </div>
             <div class="write">Write a post</div>
+            <form action="/savePost" method="post">
             <div class="title-bar">
-                <input type="text" />
+                <input type="text" name="title" />
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -76,7 +77,7 @@
                 <input
                         type="file"
                         id="file-input"
-                        name="file-input"
+                        name="content"
                         accept="image/png, image/jpeg"
                 />
             </div>
@@ -84,8 +85,11 @@
             <hr />
             <div class="button">
                 <button class="cancel-btn">Cancel</button>
-                <button class="save-btn">Save</button>
+                <div class="button">
+                    <button type="submit" class="save-btn">Save</button>
+                </div>
             </div>
+            </form>
         </main>
     </div>
 </div>
