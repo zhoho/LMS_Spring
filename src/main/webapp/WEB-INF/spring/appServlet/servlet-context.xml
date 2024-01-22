@@ -17,15 +17,6 @@
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
     <resources mapping="/static/**" location="classpath:/static/"/>
 
-
-
-    <!-- JSP -->
-    <!-- Remove this section to use ThymeLeaf instead of JSP -->
-<!--    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-<!--        <beans:property name="prefix" value="/WEB-INF/views/"/>-->
-<!--        <beans:property name="suffix" value=".jsp"/>-->
-<!--    </beans:bean>-->
-
 <!--    ThymeLeaf-->
 <!--    Uncomment this section to use ThymeLeaf instead of JSP-->
     <beans:bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">
