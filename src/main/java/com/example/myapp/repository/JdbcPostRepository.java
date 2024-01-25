@@ -5,10 +5,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.*;
 
+@Repository
 public class JdbcPostRepository implements PostRepository {
 
     private final JdbcTemplate jdbcTemplate;
@@ -33,6 +35,7 @@ public class JdbcPostRepository implements PostRepository {
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("title", post.getTitle());
+        parameters.put("content", post.getContent());
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
         post.setId(key.longValue());

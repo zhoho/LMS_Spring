@@ -69,7 +69,11 @@
                 <button class="write-btn">+ Write</button>
             </div>
             <div class="post-list">
-                <p>No posts are registered.</p>
+                <div th:each="post : ${posts}" class="post-item">
+                    <h3 th:text="${post.title}">Title</h3>
+                    <p th:text="${post.content}">Content</p>
+                </div>
+                <p th:if="${#lists.isEmpty(posts)}">No posts are registered.</p>
             </div>
         </main>
     </div>

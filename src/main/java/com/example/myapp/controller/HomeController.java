@@ -1,10 +1,11 @@
 package com.example.myapp.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.example.myapp.domain.Post;
-import com.example.myapp.repository.JpaPostRepository;
+import com.example.myapp.service.PostService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,20 +19,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @Slf4j
 public class HomeController {
-    private JpaPostRepository jpaPostRepository;
-    @Autowired
 
+    private final PostService postService;
+    @Autowired
+    public HomeController(PostService postService) {
+        this.postService = postService;
+    }
 
     @GetMapping("/")
     public String home() {
-        return "dashboard";
+        return "course";
     }
     @GetMapping("/login")
     public String login() {
         return "login";
     }
+
     @GetMapping("/course")
-    public String course() {
+    public String list(Model model) {
+        List<Post> posts = postService.findPosts();
+        model.addAttribute("posts", posts);
         return "course";
     }
     @GetMapping("/write")
@@ -39,20 +46,11 @@ public class HomeController {
         return "write";
     }
 
-    @PostMapping("/write")
-    public String form(@RequestParam String name, Model model) {
-        model.addAttribute("name", name);
-        return "write";
-    }
-
-    @PostMapping("/savePost")
-    public String savePost(@RequestParam String title, @RequestParam String content) {
-        Post post = new Post();
-        post.setTitle(title);
-        post.setContent(content);
-        jpaPostRepository.save(post);
-        return "redirect:/course";
-    }
+//    @PostMapping("/write")
+//    public String form(@RequestParam String name, Model model) {
+//        model.addAttribute("name", name);
+//        return "write";
+//    }
 
     @GetMapping("/apis/welcome")
     @ResponseBody
