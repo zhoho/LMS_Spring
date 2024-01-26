@@ -12,12 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@Slf4j
+//@Slf4j
 public class HomeController {
 
     private final PostService postService;
@@ -28,7 +25,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return "course";
+        return "dashboard";
     }
     @GetMapping("/login")
     public String login() {
@@ -52,13 +49,13 @@ public class HomeController {
 //        return "write";
 //    }
 
-    @GetMapping("/apis/welcome")
-    @ResponseBody
-    public ResponseEntity<Map<String, String>> welcome() {
-        log.info("GET /rest-api");
-
-        Map<String, String> body = new HashMap<>();
-        body.put("message", "Hello, World!");
-        return ResponseEntity.ok(body);
-    }
+//    @GetMapping("/apis/welcome")
+//    @ResponseBody
+//    public ResponseEntity<Map<String, String>> welcome() {
+//        log.info("GET /rest-api");
+//
+//        Map<String, String> body = new HashMap<>();
+//        body.put("message", "Hello, World!");
+//        return ResponseEntity.ok(body);
+//    }
 }

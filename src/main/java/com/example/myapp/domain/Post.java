@@ -4,10 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 
 @Getter
@@ -20,10 +18,10 @@ public class Post {
     private long id;
     private String title;
     private String content;
-//    private long postId;
-
-    public Post(String title, String content) {
+    private Date date;
+    public Post(String title, String content, Date date) {
         this.title = title;
         this.content = content;
+        this.date = date;
     }
 }

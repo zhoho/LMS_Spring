@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var writeBtn = document.querySelector(".course-title");
 
   writeBtn.addEventListener("click", function () {
-    window.location.href = "/lmss/course"; // 이동하려는 페이지의 URL
+    window.location.href = "/lms/course"; // 이동하려는 페이지의 URL
   });
 });
 
@@ -46,16 +46,16 @@ document.addEventListener("DOMContentLoaded", function () {
   var writeBtn = document.querySelector(".write-btn");
 
   writeBtn.addEventListener("click", function () {
-    window.location.href = "/lmss/write"; // 이동하려는 페이지의 URL
+    window.location.href = "/lms/write"; // 이동하려는 페이지의 URL
   });
 });
 
 document
   .getElementById("dashboard-icon")
   .addEventListener("click", function () {
-    window.location.href = "/lmss/dashboard";
+    window.location.href = "/lms/dashboard";
   });
 
 document.getElementById("handong-icon").addEventListener("click", function () {
-  window.location.href = "/lmss/login";
+  window.location.href = "/lms/login";
 });

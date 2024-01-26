@@ -45,5 +45,4 @@
         <property name="username" value="${spring.datasource.username}"/>
         <property name="password" value="${spring.datasource.password}"/>
     </bean>
-
 </beans>

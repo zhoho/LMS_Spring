@@ -32,11 +32,12 @@ public class JdbcPostRepository implements PostRepository {
     @Override
     public Post save(Post post) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
-        jdbcInsert.withTableName("posts").usingGeneratedKeyColumns("id");
+        jdbcInsert.withTableName("qna").usingGeneratedKeyColumns("id");
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("title", post.getTitle());
         parameters.put("content", post.getContent());
+        parameters.put("date", post.getDate());
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
         post.setId(key.longValue());
         return post;
@@ -44,18 +45,18 @@ public class JdbcPostRepository implements PostRepository {
 
     @Override
     public Optional<Post> findById(Long id) {
-        List<Post> results = jdbcTemplate.query("SELECT * FROM posts WHERE id = ?", postRowMapper, id);
+        List<Post> results = jdbcTemplate.query("SELECT * FROM qna WHERE id = ?", postRowMapper, id);
         return results.stream().findFirst();
     }
 
     @Override
     public Optional<Post> findByTitle(String title) {
-        List<Post> results = jdbcTemplate.query("SELECT * FROM posts WHERE title = ?", postRowMapper, title);
+        List<Post> results = jdbcTemplate.query("SELECT * FROM qna WHERE title = ?", postRowMapper, title);
         return results.stream().findFirst();
     }
 
     @Override
     public List<Post> findAll() {
-        return jdbcTemplate.query("SELECT * FROM posts", postRowMapper);
+        return jdbcTemplate.query("SELECT * FROM qna", postRowMapper);
     }
 }

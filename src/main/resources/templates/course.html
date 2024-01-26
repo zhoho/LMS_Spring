@@ -70,7 +70,9 @@
             </div>
             <div class="post-list">
                 <div th:each="post : ${posts}" class="post-item">
-                    <h3 th:text="${post.title}">Title</h3>
+                    <h3>
+                        <a th:href="@{/post/{id}(id=${post.id})}" th:text="${post.title}">Title</a>
+                    </h3>
                     <p th:text="${post.content}">Content</p>
                 </div>
                 <p th:if="${#lists.isEmpty(posts)}">No posts are registered.</p>

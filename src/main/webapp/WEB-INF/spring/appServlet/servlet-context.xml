@@ -32,6 +32,8 @@
     <!--        <beans:property name="suffix" value=".jsp"/>-->
     <!--    </beans:bean>-->
 
+
+
     <!--    ThymeLeaf-->
     <!--        Uncomment this section to use ThymeLeaf instead of JSP-->
     <beans:bean id="templateResolver" class="org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver">

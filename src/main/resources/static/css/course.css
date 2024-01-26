@@ -88,3 +88,27 @@ body {
   font-size: 14px; /* 소제목의 폰트 크기 지정 */
   color: #666; /* 소제목 텍스트 색상 지정 */
 }
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 1000px; /* 한 페이지에 표시할 최대 높이 */
+  overflow-y: auto; /* 내용이 많을 경우 스크롤 가능 */
+}
+
+.post-item {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc; /* 선으로 구분 */
+  padding: 10px;
+}
+
+.post-item h3 {
+  flex: 1; /* 제목 영역 */
+  margin-right: 10px; /* 내용과의 간격 */
+}
+
+.post-item p {
+  flex: 2; /* 내용 영역 */
+}
