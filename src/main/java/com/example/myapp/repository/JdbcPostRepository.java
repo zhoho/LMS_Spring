@@ -1,6 +1,7 @@
 package com.example.myapp.repository;
 
 import com.example.myapp.domain.Post;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.util.*;
 
+@Primary
 @Repository
 public class JdbcPostRepository implements PostRepository {
 
@@ -24,7 +26,6 @@ public class JdbcPostRepository implements PostRepository {
         post.setId(rs.getLong("id"));
         post.setTitle(rs.getString("title"));
         post.setContent(rs.getString("content"));
-        // 여기에 Post 객체의 다른 필드를 설정하세요
         return post;
     };
 
@@ -36,15 +37,14 @@ public class JdbcPostRepository implements PostRepository {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("title", post.getTitle());
         parameters.put("content", post.getContent());
-
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
         post.setId(key.longValue());
         return post;
     }
 
     @Override
-    public Optional<Post> findById(Long postId) {
-        List<Post> results = jdbcTemplate.query("SELECT * FROM posts WHERE id = ?", postRowMapper, postId);
+    public Optional<Post> findById(Long id) {
+        List<Post> results = jdbcTemplate.query("SELECT * FROM posts WHERE id = ?", postRowMapper, id);
         return results.stream().findFirst();
     }
 

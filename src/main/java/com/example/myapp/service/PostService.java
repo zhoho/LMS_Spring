@@ -2,6 +2,7 @@ package com.example.myapp.service;
 
 import com.example.myapp.domain.Post;
 import com.example.myapp.repository.PostRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,14 +15,13 @@ public class PostService{
 
     private final PostRepository postRepository;
 
+    @Autowired
     public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
 
-
     public Long join(Post post) {
         validateDuplicatePost(post);
-
         postRepository.save(post);
         return post.getId();
     }
@@ -37,17 +37,16 @@ public class PostService{
         return postRepository.findAll();
     }
 
-    public Optional<Post> findOne(Long postId) {
-        return postRepository.findById(postId);
+    public Optional<Post> findOne(Long id) {
+        return postRepository.findById(id);
     }
 
-    @Transactional
     public Post save(Post post) {
         return postRepository.save(post);
     }
 
-    public Optional<Post> findById(Long postId) {
-        return postRepository.findById(postId);
+    public Optional<Post> findById(Long id) {
+        return postRepository.findById(id);
     }
 
     public Optional<Post> findByTitle(String title) {
