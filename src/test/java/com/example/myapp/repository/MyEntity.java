@@ -11,5 +11,5 @@ public class MyEntity {
     @GeneratedValue
     private Long id;
 
-    private String name;
+    private String Title;
 }
