@@ -9,7 +9,8 @@ public interface PostRepository {
     Post save(Post post);
     Optional<Post> findById(Long postId);
     Optional<Post> findByTitle(String title);
-
     List<Post> findAll();
+    int deleteById(Long id);
+
 
 }

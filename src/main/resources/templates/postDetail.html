@@ -65,6 +65,12 @@
         <div class="post-date" th:text="${post.date}">Post Date</div>
         <div class="post-content" th:text="${post.content}">Post Content</div>
       </div>
+
+      <form th:action="@{/post/delete/{id}(id=${post.id})}" method="post">
+        <input type="hidden" name="_method" value="delete" />
+        <button type="submit" class="delete-btn">Delete</button>
+      </form>
+
     </main>
   </div>
 </div>

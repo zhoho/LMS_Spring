@@ -59,4 +59,10 @@ public class JdbcPostRepository implements PostRepository {
     public List<Post> findAll() {
         return jdbcTemplate.query("SELECT * FROM qna", postRowMapper);
     }
+
+    @Override
+    public int deleteById(Long id) {
+        return jdbcTemplate.update("DELETE FROM qna WHERE id = ?", id);
+    }
+
 }
