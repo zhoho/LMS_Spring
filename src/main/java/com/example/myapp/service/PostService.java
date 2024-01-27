@@ -61,4 +61,8 @@ public class PostService{
         return postRepository.deleteById(id);
     }
 
+    public int update(Post post) {
+        return postRepository.update(post);
+    }
+
 }

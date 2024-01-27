@@ -32,6 +32,17 @@ public class PostController  {
         return "redirect:/course";
     }
 
+    @PostMapping("lms/editPost")
+    public String editSavePost(@RequestParam String title, @RequestParam String content) {
+        Post post = new Post();
+        post.setTitle(title);
+        post.setContent(content);
+        post.setDate(new Date());
+        System.out.println("title : " + title + "content : " + content);
+        postService.update(post);
+        return "redirect:/course";
+    }
+
     @GetMapping("/post/{id}")
     public String viewPost(@PathVariable Long id, Model model) {
         Optional<Post> postOptional = postService.findOne(id);
@@ -42,6 +53,17 @@ public class PostController  {
             return "redirect:/errorPage";
         }
         return "postDetail";
+    }
+
+    @GetMapping("/post/update/{id}")
+    public String updatePost(@PathVariable Long id, Model model) {
+        Optional<Post> postOptional = postService.findOne(id);
+        if (postOptional.isPresent()) {
+            model.addAttribute("post", postOptional.get());
+        } else {
+            return "redirect:/errorPage";
+        }
+        return "update";
     }
 
     @PostMapping("/post/delete/{id}")

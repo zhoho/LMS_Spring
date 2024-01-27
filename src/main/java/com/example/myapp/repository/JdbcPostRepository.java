@@ -65,4 +65,10 @@ public class JdbcPostRepository implements PostRepository {
         return jdbcTemplate.update("DELETE FROM qna WHERE id = ?", id);
     }
 
+    @Override
+    public int update(Post post) {
+        return jdbcTemplate.update("UPDATE qna SET title = ?, content = ?, date = ? WHERE id = ?",
+                post.getTitle(), post.getContent(), post.getDate(), post.getId());
+    }
+
 }
