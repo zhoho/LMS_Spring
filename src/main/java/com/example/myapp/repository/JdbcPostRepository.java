@@ -2,6 +2,7 @@ package com.example.myapp.repository;
 
 import com.example.myapp.domain.Course;
 import com.example.myapp.domain.Post;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
