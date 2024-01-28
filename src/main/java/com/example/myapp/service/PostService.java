@@ -1,5 +1,6 @@
 package com.example.myapp.service;
 
+import com.example.myapp.domain.Course;
 import com.example.myapp.domain.Post;
 import com.example.myapp.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,10 @@ public class PostService{
         return postRepository.findAll();
     }
 
+    public List<Course> findCourse() {
+        return postRepository.findAllCourse();
+    }
+
     public Optional<Post> findOne(Long id) {
         return postRepository.findById(id);
     }
@@ -66,5 +71,7 @@ public class PostService{
     public List<Post> findAll() {
         return postRepository.findAll();
     }
+
+
 
 }

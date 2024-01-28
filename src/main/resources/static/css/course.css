@@ -81,12 +81,12 @@ body {
 .course-title {
   font-size: 16px; /* 제목의 폰트 크기 지정 */
   font-weight: bold; /* 제목의 폰트 두께 지정 */
-  color: #333; /* 제목 텍스트 색상 지정 */
+  color: black; /* 제목 텍스트 색상 지정 */
 }
 
 .course-subtitle {
   font-size: 14px; /* 소제목의 폰트 크기 지정 */
-  color: #666; /* 소제목 텍스트 색상 지정 */
+  color: grey; /* 소제목 텍스트 색상 지정 */
 }
 
 .post-list {

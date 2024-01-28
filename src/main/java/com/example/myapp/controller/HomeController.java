@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.example.myapp.domain.Course;
 import com.example.myapp.domain.Post;
 import com.example.myapp.service.PostService;
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +25,12 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) {
+        List<Course> courses = postService.findCourse();
+        model.addAttribute("courses", courses);
         return "dashboard";
     }
+
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -35,7 +39,9 @@ public class HomeController {
     @GetMapping("/course")
     public String list(Model model) {
         List<Post> posts = postService.findPosts();
+        List<Course> courses = postService.findCourse();
         model.addAttribute("posts", posts);
+        model.addAttribute("courses", courses);
         return "course";
     }
     @GetMapping("/write")

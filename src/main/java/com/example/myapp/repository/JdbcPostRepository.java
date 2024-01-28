@@ -1,7 +1,7 @@
 package com.example.myapp.repository;
 
+import com.example.myapp.domain.Course;
 import com.example.myapp.domain.Post;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -28,6 +28,14 @@ public class JdbcPostRepository implements PostRepository {
         post.setTitle(rs.getString("title"));
         post.setContent(rs.getString("content"));
         return post;
+    };
+
+    private final RowMapper<Course> courseRowMapper = (rs, rowNum) -> {
+        Course course = new Course();
+        course.setId(rs.getLong("id"));
+        course.setName(rs.getString("name"));
+        course.setSemester(rs.getString("semester"));
+        return course;
     };
 
     @Override
@@ -59,6 +67,12 @@ public class JdbcPostRepository implements PostRepository {
     public List<Post> findAll() {
         return jdbcTemplate.query("SELECT * FROM qna", postRowMapper);
     }
+
+    @Override
+    public List<Course> findAllCourse() {
+        return jdbcTemplate.query("SELECT * FROM course", courseRowMapper);
+    }
+
 
     @Override
     public int deleteById(Long id) {

@@ -1,5 +1,6 @@
 package com.example.myapp.repository;
 
+import com.example.myapp.domain.Course;
 import com.example.myapp.domain.Post;
 
 import java.util.List;
@@ -10,8 +11,9 @@ public interface PostRepository {
     Optional<Post> findById(Long postId);
     Optional<Post> findByTitle(String title);
     List<Post> findAll();
+    List<Course> findAllCourse();
+
     int deleteById(Long id);
     Post update(Post post);
-
 
 }
