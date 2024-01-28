@@ -2,11 +2,8 @@ package com.example.myapp.controller;
 
 import com.example.myapp.domain.Post;
 import com.example.myapp.service.PostService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.auditing.CurrentDateTimeProvider;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,13 +29,14 @@ public class PostController  {
         return "redirect:/course";
     }
 
-    @PostMapping("lms/editPost")
-    public String editSavePost(@RequestParam String title, @RequestParam String content) {
+    @PostMapping("/lms/editPost")
+    public String editSavePost(@RequestParam Long id, @RequestParam String title, @RequestParam String content) {
         Post post = new Post();
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        post.setId(id);
         post.setTitle(title);
         post.setContent(content);
         post.setDate(new Date());
-        System.out.println("title : " + title + "content : " + content);
         postService.update(post);
         return "redirect:/course";
     }

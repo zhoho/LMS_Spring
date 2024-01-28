@@ -26,6 +26,12 @@ public class PostService{
         return post.getId();
     }
 
+    public Long update(Post post) {
+        validateDuplicatePost(post);
+        postRepository.update(post);
+        return post.getId();
+    }
+
     private void validateDuplicatePost(Post post) {
         Optional<Post> result = postRepository.findByTitle(post.getTitle());
         result.ifPresent(m -> {
@@ -39,6 +45,10 @@ public class PostService{
 
     public Optional<Post> findOne(Long id) {
         return postRepository.findById(id);
+    }
+
+    public int delete(Long id) {
+        return postRepository.deleteById(id);
     }
 
     public Post save(Post post) {
@@ -55,14 +65,6 @@ public class PostService{
 
     public List<Post> findAll() {
         return postRepository.findAll();
-    }
-
-    public int delete(Long id) {
-        return postRepository.deleteById(id);
-    }
-
-    public int update(Post post) {
-        return postRepository.update(post);
     }
 
 }

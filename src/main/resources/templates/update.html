@@ -63,15 +63,16 @@
                 <h1>Practical Project1 01 > Practical Project1 01</h1>
             </div>
             <div class="write">Edit a post</div>
-            <form action="lms/editPost" method="post">
+            <form action="../../lms/editPost" method="post">
                 <div class="title-bar">
                     <input type="text" name="title" th:value="${post.title}" />
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <label for="markdown-editor"></label>
-                        <textarea id="markdown-editor" th:value="${post.content}"></textarea>
+                        <textarea id="markdown-editor" th:text="${post.content}"></textarea>
                         <input type="hidden" name="content" id="hidden-content" />
+                        <input type="hidden" name="id" th:value="${post.id}" />
                     </div>
                 </div>
                 <div id="file-guide">Attatch a file</div>
@@ -88,7 +89,7 @@
                 <div class="button">
                     <button class="cancel-btn">Cancel</button>
                     <div class="button">
-                        <button type="submit" class="save-btn">Save</button>
+                        <button type="submit" class="edit-btn">Save</button>
                     </div>
                 </div>
             </form>
@@ -99,10 +100,6 @@
     var simplemde = new SimpleMDE({
         element: document.getElementById("markdown-editor")
     });
-
-    // simplemde.value(document.getElementById("markdown-editor").value);
-    simplemde.codemirror.setValue(document.getElementById("markdown-editor").innerHTML);
-
 
     simplemde.codemirror.on("change", function(){
         var content = simplemde.value();

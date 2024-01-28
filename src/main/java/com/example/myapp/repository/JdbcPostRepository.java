@@ -1,6 +1,7 @@
 package com.example.myapp.repository;
 
 import com.example.myapp.domain.Post;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -42,7 +43,6 @@ public class JdbcPostRepository implements PostRepository {
         post.setId(key.longValue());
         return post;
     }
-
     @Override
     public Optional<Post> findById(Long id) {
         List<Post> results = jdbcTemplate.query("SELECT * FROM qna WHERE id = ?", postRowMapper, id);
@@ -66,9 +66,9 @@ public class JdbcPostRepository implements PostRepository {
     }
 
     @Override
-    public int update(Post post) {
-        return jdbcTemplate.update("UPDATE qna SET title = ?, content = ?, date = ? WHERE id = ?",
+    public Post update(Post post) {
+        jdbcTemplate.update("UPDATE qna SET title = ?, content = ?, date = ? WHERE id = ?",
                 post.getTitle(), post.getContent(), post.getDate(), post.getId());
+        return post;
     }
-
 }
