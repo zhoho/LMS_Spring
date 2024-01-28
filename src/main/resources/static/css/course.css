@@ -60,55 +60,40 @@ body {
 
 .post-list {
   border-top: 1px solid #ddd;
-  padding-top: 30px;
   padding-bottom: 20px;
   border-bottom: 1px solid #ddd;
-}
-
-.post-list p {
-  text-align: center;
-  color: #888;
-}
-
-.course-list {
-  padding: 0 16px; /* 강의 목록의 패딩 지정 */
-}
-
-.course-item {
-  padding: 8px 0; /* 강의 항목의 위아래 패딩 지정 */
-}
-
-.course-title {
-  font-size: 16px; /* 제목의 폰트 크기 지정 */
-  font-weight: bold; /* 제목의 폰트 두께 지정 */
-  color: black; /* 제목 텍스트 색상 지정 */
-}
-
-.course-subtitle {
-  font-size: 14px; /* 소제목의 폰트 크기 지정 */
-  color: grey; /* 소제목 텍스트 색상 지정 */
-}
-
-.post-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-height: 1000px; /* 한 페이지에 표시할 최대 높이 */
-  overflow-y: auto; /* 내용이 많을 경우 스크롤 가능 */
+  max-height: 1000px;
+  overflow-y: auto;
 }
 
 .post-item {
+  border-bottom: 1px solid #ccc;
   display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid #ccc; /* 선으로 구분 */
-  padding: 10px;
+  align-items: center;
 }
 
-.post-item h3 {
-  flex: 1; /* 제목 영역 */
-  margin-right: 10px; /* 내용과의 간격 */
+.post-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 15px;
+  width: 100%;
 }
 
-.post-item p {
-  flex: 2; /* 내용 영역 */
+.post-link:hover {
+  background-color: #f0f0f0; /* 마우스 오버 시 배경색 변경 */
+  text-decoration: none; /* 마우스 오버 시 밑줄 제거 */
+  color: inherit; /* 마우스 오버 시 색상 변화 방지 */
+}
+.course-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+}
+
+.course-subtitle {
+  font-size: 12px;
+  color: grey;
 }

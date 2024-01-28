@@ -69,11 +69,15 @@
                 <button class="write-btn">+ Write</button>
             </div>
             <div class="post-list">
-                <div th:each="post : ${posts}" class="post-item">
-                    <h3>
-                        <a th:href="@{/post/{id}(id=${post.id})}" th:text="${post.title}">Title</a>
-                    </h3>
-                    <p th:text="${post.content}">Content</p>
+                <div class="post-list">
+                    <div th:each="post : ${posts}" class="post-item">
+                        <!-- 하이퍼링크를 블록 레벨 요소로 만들기 -->
+                        <a th:href="@{/post/{id}(id=${post.id})}" class="post-link">
+                            <h3 th:text="${post.title}">Title</h3>
+                            <p th:text="${post.content}">Content</p>
+                        </a>
+                    </div>
+                    </a>
                 </div>
                 <p th:if="${#lists.isEmpty(posts)}">No posts are registered.</p>
             </div>
