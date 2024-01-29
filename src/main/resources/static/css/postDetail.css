@@ -1,0 +1,77 @@
+.update-btn {
+    background-color: #F9F9F9;
+    border-radius: 4px;
+    padding: 2px 10px 2px 7px;
+}
+
+.delete-btn {
+    background-color: #F9F9F9;
+    border-radius: 4px;
+    padding: 2px 10px 2px 7px;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 4px;
+}
+
+.nav-btn.next,
+.nav-btn.prev {
+    background-color: #F9F9F9;
+    border-radius: 4px;
+    box-shadow: none;
+    border: 1px solid #A9A9A9;
+    padding: 8px 10px;
+}
+
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #F5F5F5;
+    padding: 10px;
+    box-shadow: none;
+    border: 1px solid #A9A9A9;
+}
+
+.goto-list-btn {
+    background-color: #747474;
+    color : #FFFFFF;
+    border-radius: 4px;
+    padding: 7px 10px;
+}
+
+.action-bar .update-btn,
+.action-bar .delete-btn {
+    margin-left: 5px;
+}
+
+.action-bar form {
+    display: inline;
+}
+
+.update-btn:hover,
+.delete-btn:hover,
+.nav-btn.next:hover,
+.nav-btn.prev:hover{
+    background-color: #626466;
+    cursor: pointer;
+}
+
+.goto-list-btn:hover {
+    background-color: black;
+    cursor: pointer;
+}
+
+.update-btn,
+.delete-btn,
+.goto-list-btn {
+    box-shadow: none;
+    border: 1px solid #A9A9A9;
+}
+
+
+.post-detail {
+    padding-top: 20px;
+    padding-bottom: 40px;
+}

@@ -60,19 +60,45 @@
       <div class="board-header">
         <h1>Practical Project1 01 > Practical Project1 01</h1>
       </div>
+
+      <div class="action-bar">
+        <button class="goto-list-btn">Go To List</button>
+        <div>
+          <button class="update-btn" th:onclick="'location.href=\'' + @{/post/update/{id}(id=${post.id})} + '\''">Edit</button>
+          <form th:action="@{/post/delete/{id}(id=${post.id})}" method="post" style="display: inline;">
+            <input type="hidden" name="_method" value="delete" />
+            <button type="submit" class="delete-btn">Delete</button>
+          </form>
+        </div>
+      </div>
+
       <div class="post-detail">
         <h1 th:text="${post.title}">Post Title</h1>
         <div class="post-date" th:text="${post.date}">Post Date</div>
         <div class="post-content" th:text="${post.content}">Post Content</div>
       </div>
 
-      <form th:action="@{/post/delete/{id}(id=${post.id})}" method="post">
-        <input type="hidden" name="_method" value="delete" />
-        <button type="submit" class="delete-btn">Delete</button>
-      </form>
+      <div class="navigation">
+        <hr>
+        <div class="nav-buttons">
+          <button th:if="${isPrevPostAvailable}"
+                  th:onclick="'location.href=\'' + @{/post/{id}(id=${prevPostId})} + '\''"
+                  class="nav-btn prev"> < Prev</button>
 
-      <button th:onclick="'location.href=\'' + @{/post/update/{id}(id=${post.id})} + '\''" th:text="update">Update Button</button>
+          <button th:unless="${isPrevPostAvailable}"
+                  disabled="disabled"
+                  class="nav-btn prev"> < Prev</button>
 
+
+          <button th:if="${isNextPostAvailable}"
+                  th:onclick="'location.href=\'' + @{/post/{id}(id=${nextPostId})} + '\''"
+                  class="nav-btn next">Next > </button>
+
+          <button th:unless="${isNextPostAvailable}"
+                  disabled="disabled"
+                  class="nav-btn next">Next > </button>
+        </div>
+      </div>
     </main>
   </div>
 </div>
