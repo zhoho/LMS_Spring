@@ -32,7 +32,6 @@ public class PostController  {
     @PostMapping("/lms/editPost")
     public String editSavePost(@RequestParam Long id, @RequestParam String title, @RequestParam String content) {
         Post post = new Post();
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         post.setId(id);
         post.setTitle(title);
         post.setContent(content);
@@ -46,8 +45,13 @@ public class PostController  {
         Optional<Post> postOptional = postService.findOne(id);
         if (postOptional.isPresent()) {
             model.addAttribute("post", postOptional.get());
+            Long prevPostId = postService.findPreviousPostId(id);
+            Long nextPostId = postService.findNextPostId(id);
+            model.addAttribute("prevPostId", prevPostId);
+            model.addAttribute("isPrevPostAvailable", prevPostId != null);
+            model.addAttribute("nextPostId", nextPostId);
+            model.addAttribute("isNextPostAvailable", nextPostId != null);
         } else {
-            // 게시물이 존재하지 않을 때의 처리 (예: 오류 메시지 표시, 다른 페이지로 리디렉션)
             return "redirect:/errorPage";
         }
         return "postDetail";

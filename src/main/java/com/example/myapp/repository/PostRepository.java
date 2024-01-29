@@ -16,4 +16,7 @@ public interface PostRepository {
     int deleteById(Long id);
     Post update(Post post);
 
+    Long findPreviousPostId(Long id);
+    Long findNextPostId(Long id);
+
 }

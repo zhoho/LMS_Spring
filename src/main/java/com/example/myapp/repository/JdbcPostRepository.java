@@ -4,6 +4,7 @@ import com.example.myapp.domain.Course;
 import com.example.myapp.domain.Post;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Primary;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -85,5 +86,23 @@ public class JdbcPostRepository implements PostRepository {
         jdbcTemplate.update("UPDATE qna SET title = ?, content = ?, date = ? WHERE id = ?",
                 post.getTitle(), post.getContent(), post.getDate(), post.getId());
         return post;
+    }
+
+    public Long findPreviousPostId(Long currentPostId) {
+        String sql = "SELECT id FROM qna WHERE id < ? ORDER BY id DESC LIMIT 1";
+        try {
+            return jdbcTemplate.queryForObject(sql, new Object[]{currentPostId}, Long.class);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public Long findNextPostId(Long currentPostId) {
+        String sql = "SELECT id FROM qna WHERE id > ? ORDER BY id ASC LIMIT 1";
+        try {
+            return jdbcTemplate.queryForObject(sql, new Object[]{currentPostId}, Long.class);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }

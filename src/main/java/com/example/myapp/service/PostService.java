@@ -4,6 +4,7 @@ import com.example.myapp.domain.Course;
 import com.example.myapp.domain.Post;
 import com.example.myapp.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -72,6 +73,12 @@ public class PostService{
         return postRepository.findAll();
     }
 
+    public Long findPreviousPostId(Long currentPostId) {
+        return postRepository.findPreviousPostId(currentPostId);
+    }
 
+    public Long findNextPostId(Long currentPostId) {
+        return postRepository.findNextPostId(currentPostId);
+    }
 
 }
