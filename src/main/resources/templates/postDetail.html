@@ -9,7 +9,7 @@
   <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js}"></script>
   <title>Course</title>
 </head>
-<body style="overflow: auto">
+<body style="overflow: hidden">
 <div class="container-fluid">
   <div class="row">
     <nav class="d-none d-md-block sidebar">
@@ -62,7 +62,7 @@
       </div>
 
       <div class="action-bar">
-        <button class="goto-list-btn">Go To List</button>
+        <button class="goto-list-btn" th:onclick="'location.href=\'' + @{/course} + '\''">Go To List</button>
         <div>
           <button class="update-btn" th:onclick="'location.href=\'' + @{/post/update/{id}(id=${post.id})} + '\''">Edit</button>
           <form th:action="@{/post/delete/{id}(id=${post.id})}" method="post" style="display: inline;">
