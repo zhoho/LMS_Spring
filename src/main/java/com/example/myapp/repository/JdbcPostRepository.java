@@ -2,9 +2,9 @@ package com.example.myapp.repository;
 
 import com.example.myapp.domain.Course;
 import com.example.myapp.domain.Post;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Primary;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -60,10 +60,11 @@ public class JdbcPostRepository implements PostRepository {
     }
 
     @Override
-    public Optional<Post> findByTitle(String title) {
-        List<Post> results = jdbcTemplate.query("SELECT * FROM qna WHERE title = ?", postRowMapper, title);
-        return results.stream().findFirst();
+    public List<Post> findByTitle(String title) {
+        String query = "%" + title + "%";
+        return jdbcTemplate.query("SELECT * FROM posts WHERE title LIKE ?", postRowMapper, query);
     }
+
 
     @Override
     public List<Post> findAll() {
@@ -87,7 +88,7 @@ public class JdbcPostRepository implements PostRepository {
                 post.getTitle(), post.getContent(), post.getDate(), post.getId());
         return post;
     }
-
+    @Override
     public Long findPreviousPostId(Long currentPostId) {
         String sql = "SELECT id FROM qna WHERE id < ? ORDER BY id DESC LIMIT 1";
         try {
@@ -96,7 +97,7 @@ public class JdbcPostRepository implements PostRepository {
             return null;
         }
     }
-
+    @Override
     public Long findNextPostId(Long currentPostId) {
         String sql = "SELECT id FROM qna WHERE id > ? ORDER BY id ASC LIMIT 1";
         try {
@@ -104,5 +105,10 @@ public class JdbcPostRepository implements PostRepository {
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
+    }
+    @Override
+    public List<Post> findByTitleContaining(String title) {
+        String sql = "SELECT * FROM qna WHERE title LIKE ?";
+        return jdbcTemplate.query(sql, new Object[]{"%" + title + "%"}, postRowMapper);
     }
 }

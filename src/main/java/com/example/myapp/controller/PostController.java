@@ -3,22 +3,26 @@ package com.example.myapp.controller;
 import com.example.myapp.domain.Post;
 import com.example.myapp.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 //@Slf4j
-public class PostController  {
+public class PostController {
     private final PostService postService;
 
     @Autowired
     public PostController(PostService postService) {
         this.postService = postService;
     }
+
     @PostMapping("lms/savePost")
     public String savePost(@RequestParam String title, @RequestParam String content) {
         Post post = new Post();
@@ -74,4 +78,14 @@ public class PostController  {
         return "redirect:/course";
     }
 
+    @GetMapping("/search-posts")
+    public String searchPosts(@RequestParam(required = false) String title, Model model) {
+        if (title != null && !title.isEmpty()) {
+            List<Post> posts = postService.findByTitleContaining(title);
+            model.addAttribute("posts", posts);
+        } else {
+            model.addAttribute("posts", Collections.emptyList());
+        }
+        return "course";
+    }
 }

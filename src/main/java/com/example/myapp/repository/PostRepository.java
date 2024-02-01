@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface PostRepository {
     Post save(Post post);
     Optional<Post> findById(Long postId);
-    Optional<Post> findByTitle(String title);
+    List<Post> findByTitle(String title);
     List<Post> findAll();
     List<Course> findAllCourse();
 
@@ -18,5 +18,5 @@ public interface PostRepository {
 
     Long findPreviousPostId(Long id);
     Long findNextPostId(Long id);
-
+    List<Post> findByTitleContaining(String title);
 }

@@ -23,23 +23,21 @@ public class PostService{
     }
 
     public Long join(Post post) {
-        validateDuplicatePost(post);
         postRepository.save(post);
         return post.getId();
     }
 
     public Long update(Post post) {
-        validateDuplicatePost(post);
         postRepository.update(post);
         return post.getId();
     }
 
-    private void validateDuplicatePost(Post post) {
-        Optional<Post> result = postRepository.findByTitle(post.getTitle());
-        result.ifPresent(m -> {
-            throw new IllegalArgumentException("이미 존재하는 글입니다.");
-        });
-    }
+//    private void validateDuplicatePost(Post post) {
+//        List<Post> result = postRepository.findByTitle(post.getTitle());
+//        result.set(m -> {
+//            throw new IllegalArgumentException("이미 존재하는 글입니다.");
+//        });
+//    }
 
     public List<Post> findPosts() {
         return postRepository.findAll();
@@ -65,7 +63,7 @@ public class PostService{
         return postRepository.findById(id);
     }
 
-    public Optional<Post> findByTitle(String title) {
+    public List<Post> findByTitle(String title) {
         return postRepository.findByTitle(title);
     }
 
@@ -80,5 +78,7 @@ public class PostService{
     public Long findNextPostId(Long currentPostId) {
         return postRepository.findNextPostId(currentPostId);
     }
-
+    public List<Post> findByTitleContaining(String title) {
+        return postRepository.findByTitleContaining(title);
+    }
 }
