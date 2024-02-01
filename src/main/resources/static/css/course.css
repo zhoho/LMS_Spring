@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
 .board-header {
@@ -86,14 +86,4 @@ body {
   background-color: #f0f0f0; /* 마우스 오버 시 배경색 변경 */
   text-decoration: none; /* 마우스 오버 시 밑줄 제거 */
   color: inherit; /* 마우스 오버 시 색상 변화 방지 */
-}
-.course-title {
-  font-size: 14px;
-  font-weight: bold;
-  color: black;
-}
-
-.course-subtitle {
-  font-size: 12px;
-  color: grey;
 }

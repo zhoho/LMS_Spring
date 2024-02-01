@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
 .board-header {
@@ -78,5 +78,5 @@ body {
 }
 
 #markdown-editor {
-  width: 100%; /* ¿¡µðÅÍÀÇ ³Êºñ¸¦ ÄÁÅ×ÀÌ³ÊÀÇ 100%·Î ¼³Á¤ */
+  width: 100%; /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Êºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ 100%ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 }

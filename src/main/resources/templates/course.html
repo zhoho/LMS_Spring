@@ -5,10 +5,11 @@
     <link th:href="@{/static/css/sidebar.css}" rel="stylesheet" />
     <link th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css}" rel="stylesheet"/>
     <script th:src="@{/static/js/sidebarButtonEvent.js}"></script>
+    <script th:src="@{/static/js/script.js}"></script>
     <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js}"></script>
     <title>Course</title>
 </head>
-<body style="overflow: auto">
+<body style>
 <div class="container-fluid">
     <div class="row">
         <nav class="d-none d-md-block sidebar">
@@ -62,21 +63,19 @@
             <div class="button-container">
                 <div class="search-bar">
                     <label>
-                        <input type="text" placeholder="Title/Author" />
+                        <form action="lms/search-posts" method="get">
+                            <input type="text" id="search-input" name="title" placeholder="Title" />
+                            <button type="submit" id="search-button">Search</button>
+                        </form>
                     </label>
-                    <button class="search-btn">Search</button>
                 </div>
                 <button class="write-btn">+ Write</button>
             </div>
             <div class="post-list">
-                <div class="post-list">
-                    <div th:each="post : ${posts}" class="post-item">
-                        <!-- 하이퍼링크를 블록 레벨 요소로 만들기 -->
-                        <a th:href="@{/post/{id}(id=${post.id})}" class="post-link">
-                            <h3 th:text="${post.title}">Title</h3>
-                            <p th:text="${post.content}">Content</p>
-                        </a>
-                    </div>
+                <div th:each="post : ${posts}" class="post-item">
+                    <a th:href="@{/post/{id}(id=${post.id})}" class="post-link">
+                        <h3 th:text="${post.title}">Title</h3>
+                        <p th:text="${post.content}">Content</p>
                     </a>
                 </div>
                 <p th:if="${#lists.isEmpty(posts)}">No posts are registered.</p>

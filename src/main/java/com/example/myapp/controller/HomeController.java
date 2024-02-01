@@ -49,19 +49,4 @@ public class HomeController {
         return "write";
     }
 
-//    @PostMapping("/write")
-//    public String form(@RequestParam String name, Model model) {
-//        model.addAttribute("name", name);
-//        return "write";
-//    }
-
-//    @GetMapping("/apis/welcome")
-//    @ResponseBody
-//    public ResponseEntity<Map<String, String>> welcome() {
-//        log.info("GET /rest-api");
-//
-//        Map<String, String> body = new HashMap<>();
-//        body.put("message", "Hello, World!");
-//        return ResponseEntity.ok(body);
-//    }
 }

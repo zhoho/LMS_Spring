@@ -89,7 +89,6 @@
                   disabled="disabled"
                   class="nav-btn prev"> < Prev</button>
 
-
           <button th:if="${isNextPostAvailable}"
                   th:onclick="'location.href=\'' + @{/post/{id}(id=${nextPostId})} + '\''"
                   class="nav-btn next">Next > </button>
