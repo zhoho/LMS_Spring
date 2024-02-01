@@ -78,7 +78,7 @@ public class PostController {
         return "redirect:/course";
     }
 
-    @GetMapping("/search-posts")
+    @GetMapping("lms/search-posts")
     public String searchPosts(@RequestParam(required = false) String title, Model model) {
         if (title != null && !title.isEmpty()) {
             List<Post> posts = postService.findByTitleContaining(title);
