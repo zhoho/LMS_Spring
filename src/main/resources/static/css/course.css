@@ -28,7 +28,7 @@ body {
   background-color: #007bff;
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 4px 7px 4px 11px;
   margin-bottom: 20px;
   cursor: pointer;
   border-radius: 4px;
@@ -36,31 +36,26 @@ body {
 
 .search-bar {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
   width: 420px;
+  height: 40px;
 }
 
-.search-bar input {
+.search-form {
+  display: inline-flex;
+}
+
+.search-input {
   width: 100%;
-  padding: 10px;
-  margin-right: 10px;
+  padding: 4px 6px;
   border: 1px solid #ddd;
   border-radius: 5px;
 }
 
-.search-btn {
-  background-color: #666;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
 .post-list {
   border-top: 1px solid #ddd;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   border-bottom: 1px solid #ddd;
   display: flex;
   flex-direction: column;
@@ -74,6 +69,15 @@ body {
   align-items: center;
 }
 
+.title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.content {
+  font-size: 13px;
+}
+
 .post-link {
   display: block;
   text-decoration: none;
@@ -82,8 +86,33 @@ body {
   width: 100%;
 }
 
+.content-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content-left {
+  flex-grow: 1;
+}
+
+.date {
+  text-align: right;
+}
+
 .post-link:hover {
   background-color: #f0f0f0; /* 마우스 오버 시 배경색 변경 */
   text-decoration: none; /* 마우스 오버 시 밑줄 제거 */
   color: inherit; /* 마우스 오버 시 색상 변화 방지 */
+}
+
+.search-btn {
+  background-color: #464646;
+  color: white;
+  border: none;
+  padding: 4px 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 20px;
 }

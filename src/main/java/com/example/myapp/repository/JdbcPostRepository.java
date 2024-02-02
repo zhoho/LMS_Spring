@@ -29,6 +29,7 @@ public class JdbcPostRepository implements PostRepository {
         post.setId(rs.getLong("id"));
         post.setTitle(rs.getString("title"));
         post.setContent(rs.getString("content"));
+        post.setDate(rs.getDate("date"));
         return post;
     };
 

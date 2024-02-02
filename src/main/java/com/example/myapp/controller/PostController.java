@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -25,24 +28,29 @@ public class PostController {
 
     @PostMapping("lms/savePost")
     public String savePost(@RequestParam String title, @RequestParam String content) {
+        LocalDateTime now = LocalDateTime.now();
+        Timestamp timestamp = Timestamp.valueOf(now);
         Post post = new Post();
         post.setTitle(title);
         post.setContent(content);
-        post.setDate(new Date());
+        post.setDate(timestamp);
         postService.join(post);
         return "redirect:/course";
     }
 
     @PostMapping("/lms/editPost")
     public String editSavePost(@RequestParam Long id, @RequestParam String title, @RequestParam String content) {
+        LocalDateTime now = LocalDateTime.now();
+        Timestamp timestamp = Timestamp.valueOf(now);
         Post post = new Post();
         post.setId(id);
         post.setTitle(title);
         post.setContent(content);
-        post.setDate(new Date());
+        post.setDate(timestamp);
         postService.update(post);
         return "redirect:/course";
     }
+
 
     @GetMapping("/post/{id}")
     public String viewPost(@PathVariable Long id, Model model) {
