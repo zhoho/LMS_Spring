@@ -1,13 +1,16 @@
 package com.example.myapp.controller;
 
 import com.example.myapp.domain.Post;
+import com.example.myapp.domain.PostFile;
 import com.example.myapp.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,16 +30,31 @@ public class PostController {
     }
 
     @PostMapping("lms/savePost")
-    public String savePost(@RequestParam String title, @RequestParam String content) {
+    public String savePost(@RequestParam String title, @RequestParam String content, @RequestParam("file") MultipartFile file) {
         LocalDateTime now = LocalDateTime.now();
         Timestamp timestamp = Timestamp.valueOf(now);
         Post post = new Post();
         post.setTitle(title);
         post.setContent(content);
         post.setDate(timestamp);
-        postService.join(post);
+
+        PostFile postFile = new PostFile();
+        if (!file.isEmpty()) {
+            String fileName = file.getOriginalFilename();
+            String filePath = "uploads/" + fileName;
+            long fileSize = file.getSize();
+
+            postFile.setFileName(fileName);
+            postFile.setFilePath(filePath);
+            postFile.setFileSize(fileSize);
+            post.setFile(postFile);
+        }
+
+        postService.join(post, postFile);
         return "redirect:/course";
     }
+
+
 
     @PostMapping("/lms/editPost")
     public String editSavePost(@RequestParam Long id, @RequestParam String title, @RequestParam String content) {

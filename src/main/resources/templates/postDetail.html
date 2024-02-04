@@ -76,6 +76,7 @@
         <h1 th:text="${post.title}">Post Title</h1>
         <div class="post-date" th:text="'Date: ' + ${#dates.format(post.date, 'MMMM d h:mm a')}">Post Date</div>
         <div class="post-content" th:text="${post.content}">Post Content</div>
+        <img th:if="${post.file != null}" th:src="@{'/' + ${post.file.filePath}}" alt="Post Image" />
       </div>
 
       <div class="navigation">

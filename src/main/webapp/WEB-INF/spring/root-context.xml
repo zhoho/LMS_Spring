@@ -31,7 +31,6 @@
         </property>
     </bean>
 
-
     <!-- JPA 트랜잭션 관리자 -->
     <tx:annotation-driven />
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
@@ -45,4 +44,5 @@
         <property name="username" value="${spring.datasource.username}"/>
         <property name="password" value="${spring.datasource.password}"/>
     </bean>
+
 </beans>

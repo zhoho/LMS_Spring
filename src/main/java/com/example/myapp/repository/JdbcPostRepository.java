@@ -2,9 +2,9 @@ package com.example.myapp.repository;
 
 import com.example.myapp.domain.Course;
 import com.example.myapp.domain.Post;
+import com.example.myapp.domain.PostFile;
 import org.springframework.context.annotation.Primary;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -42,10 +42,9 @@ public class JdbcPostRepository implements PostRepository {
     };
 
     @Override
-    public Post save(Post post) {
+    public Post savePost(Post post) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
         jdbcInsert.withTableName("qna").usingGeneratedKeyColumns("id");
-
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("title", post.getTitle());
         parameters.put("content", post.getContent());
@@ -111,5 +110,11 @@ public class JdbcPostRepository implements PostRepository {
     public List<Post> findByTitleContaining(String title) {
         String sql = "SELECT * FROM qna WHERE title LIKE ?";
         return jdbcTemplate.query(sql, new Object[]{"%" + title + "%"}, postRowMapper);
+    }
+
+    @Override
+    public void saveFile(PostFile file) {
+        String sql = "INSERT INTO qna_files (file_name, file_path, file_size) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, file.getFileName(), file.getFilePath(), file.getFileSize());
     }
 }

@@ -49,4 +49,12 @@
         <beans:property name="templateEngine" ref="templateEngine"/>
         <beans:property name="characterEncoding" value="UTF-8"/>
     </beans:bean>
+    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- Set the maximum upload size (in bytes) -->
+        <beans:property name="maxUploadSize" value="5242880" /> <!-- 5MB as an example -->
+        <!-- Set the maximum size allowed for the entire request (including form fields) -->
+        <beans:property name="maxInMemorySize" value="10240" /> <!-- 10KB as an example -->
+        <!-- Set the default character encoding -->
+        <beans:property name="defaultEncoding" value="UTF-8" />
+    </beans:bean>
 </beans:beans>

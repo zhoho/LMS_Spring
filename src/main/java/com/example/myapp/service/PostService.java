@@ -2,9 +2,9 @@ package com.example.myapp.service;
 
 import com.example.myapp.domain.Course;
 import com.example.myapp.domain.Post;
+import com.example.myapp.domain.PostFile;
 import com.example.myapp.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,10 +22,13 @@ public class PostService{
         this.postRepository = postRepository;
     }
 
-    public Long join(Post post) {
-        postRepository.save(post);
+    public Long join(Post post, PostFile file) {
+//        post.setFile(file);
+        postRepository.saveFile(file);
+        postRepository.savePost(post);
         return post.getId();
     }
+
 
     public Long update(Post post) {
         postRepository.update(post);
@@ -55,8 +58,8 @@ public class PostService{
         return postRepository.deleteById(id);
     }
 
-    public Post save(Post post) {
-        return postRepository.save(post);
+    public Post savePost(Post post) {
+        return postRepository.savePost(post);
     }
 
     public Optional<Post> findById(Long id) {

@@ -63,9 +63,9 @@
                 <h1>Practical Project1 01 > Practical Project1 01</h1>
             </div>
             <div class="write">Write a post</div>
-            <form action="lms/savePost" method="post">
+            <form action="lms/savePost" method="post" enctype="multipart/form-data">
             <div class="title-bar">
-                <input type="text" name="title" />
+                    <input type="text" name="title" />
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -75,12 +75,7 @@
             </div>
             <div id="file-guide">Attatch a file</div>
             <div class="file-input">
-                <input
-                        type="file"
-                        id="file-input"
-                        name="contents"
-                        accept="image/png, image/jpeg"
-                />
+                <input type="file" name="file" id="file-input"/>
             </div>
             <br />
             <hr />
@@ -99,7 +94,6 @@
         element: document.getElementById("markdown-editor")
     });
 
-    // Markdown 에디터의 변경사항을 감지하고 숨겨진 입력 필드에 저장
     simplemde.codemirror.on("change", function(){
         var content = simplemde.value();
         document.getElementById("hidden-content").value = content;
