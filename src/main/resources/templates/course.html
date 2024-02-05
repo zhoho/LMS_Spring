@@ -36,13 +36,14 @@
                             <h4>Courses</h4>
                         </div>
                         <div class="course-list">
-                            <div th:each="course : ${courses}" class="course-item">
+                            <div th:each="course : ${courses}" class="course-item" th:onclick="'window.location.href=\'' + @{/course/{id}(id=${course.id})} + '\''">
                                 <div class="course-title" th:text="${course.name}">
                                 </div>
                                 <div class="course-subtitle" th:text="${course.semester}">
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <li class="nav-item sidebar-icon">
                         <span data-feather="calendar"></span>

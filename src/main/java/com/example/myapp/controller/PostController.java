@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -30,7 +31,7 @@ public class PostController {
     }
 
     @PostMapping("lms/savePost")
-    public String savePost(@RequestParam String title, @RequestParam String content, @RequestParam("file") MultipartFile file) {
+    public String savePost(@RequestParam String title, @RequestParam String content, @RequestParam("file") MultipartFile file) throws IOException {
         LocalDateTime now = LocalDateTime.now();
         Timestamp timestamp = Timestamp.valueOf(now);
         Post post = new Post();
@@ -38,20 +39,20 @@ public class PostController {
         post.setContent(content);
         post.setDate(timestamp);
 
-        PostFile postFile = new PostFile();
-        if (!file.isEmpty()) {
-            String fileName = file.getOriginalFilename();
-            String filePath = "uploads/" + fileName;
-            long fileSize = file.getSize();
+//        PostFile postFile = new PostFile();
+//        if (!file.isEmpty()) {
+//            String fileName = file.getOriginalFilename();
+//            String filePath = "lms/uploads/" + fileName;
+//            long fileSize = file.getSize();
+//
+//            postFile.setFileName(fileName);
+//            postFile.setFilePath(filePath);
+//            postFile.setFileSize(fileSize);
+//            post.setFile(postFile);
+//        }
 
-            postFile.setFileName(fileName);
-            postFile.setFilePath(filePath);
-            postFile.setFileSize(fileSize);
-            post.setFile(postFile);
-        }
-
-        postService.join(post, postFile);
-        return "redirect:/course";
+        postService.join(post, file);
+        return "redirect:/course/1";
     }
 
 
@@ -66,7 +67,7 @@ public class PostController {
         post.setContent(content);
         post.setDate(timestamp);
         postService.update(post);
-        return "redirect:/course";
+        return "redirect:/course/1";
     }
 
 
@@ -101,7 +102,7 @@ public class PostController {
     @PostMapping("/post/delete/{id}")
     public String deletePost(@PathVariable Long id) {
         postService.delete(id);
-        return "redirect:/course";
+        return "redirect:/course/1";
     }
 
     @GetMapping("lms/search-posts")
@@ -112,6 +113,6 @@ public class PostController {
         } else {
             model.addAttribute("posts", Collections.emptyList());
         }
-        return "course";
+        return "course/1";
     }
 }

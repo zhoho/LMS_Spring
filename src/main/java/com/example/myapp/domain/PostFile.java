@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "qna_files") // 테이블 이름을 "qna"로 설정
+@Table(name = "qna_files")
 @NoArgsConstructor
 public class PostFile {
     @Id
@@ -21,7 +21,7 @@ public class PostFile {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
-    private Post post; // Post와 PostFile을 일대일 관계로 매핑합니다.
+    private Post post;
 
     public PostFile(String fileName, String filePath, long fileSize) {
         this.fileName = fileName;

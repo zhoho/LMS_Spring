@@ -53,9 +53,26 @@ public class JdbcPostRepository implements PostRepository {
         post.setId(key.longValue());
         return post;
     }
+//    @Override
+//    public Optional<Post> findById(Long id) {
+//        List<Post> results = jdbcTemplate.query("SELECT * FROM qna WHERE id = ?", postRowMapper, id);
+//        return results.stream().findFirst();
+//    }
+
     @Override
     public Optional<Post> findById(Long id) {
-        List<Post> results = jdbcTemplate.query("SELECT * FROM qna WHERE id = ?", postRowMapper, id);
+        String sql = "SELECT p.*, f.fileName, f.filePath, f.fileSize FROM qna p LEFT JOIN qna_files f ON p.id = f.id WHERE p.id = ?";
+        List<Post> results = jdbcTemplate.query(sql, new Object[]{id}, (rs, rowNum) -> {
+            Post post = postRowMapper.mapRow(rs, rowNum);
+            if (rs.getString("fileName") != null) { // 파일 정보가 있는 경우
+                PostFile file = new PostFile();
+                file.setFileName(rs.getString("fileName"));
+                file.setFilePath(rs.getString("filePath"));
+                file.setFileSize(rs.getLong("fileSize"));
+                post.setFile(file);
+            }
+            return post;
+        });
         return results.stream().findFirst();
     }
 
@@ -114,7 +131,7 @@ public class JdbcPostRepository implements PostRepository {
 
     @Override
     public void saveFile(PostFile file) {
-        String sql = "INSERT INTO qna_files (file_name, file_path, file_size) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO qna_files (fileName, filePath, fileSize) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, file.getFileName(), file.getFilePath(), file.getFileSize());
     }
 }

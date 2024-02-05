@@ -10,9 +10,9 @@ import java.util.Date;
 
 
 @Getter
-@Entity
-@Table(name = "qna") // 테이블 이름을 "qna"로 설정
 @Setter
+@Entity
+@Table(name = "qna")
 @NoArgsConstructor
 public class Post {
     @Id
@@ -22,8 +22,12 @@ public class Post {
     private String content;
     private Date date;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "course_id") // 외래 키를 지정
+    private Course course;
+
     @OneToOne(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private PostFile file; // Post와 PostFile을 일대일 관계로 매핑합니다.
+    private PostFile file;
 
     public Post(String title, String content, Timestamp date) {
         this.title = title;

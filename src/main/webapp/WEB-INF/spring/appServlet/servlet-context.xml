@@ -22,8 +22,13 @@
     <jpa:repositories base-package="com.example.myapp"/>
 
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+<!--    <resources mapping="/uploads/**" location="file:/Users/choejiho/Downloads/LMS_Spring/src/main/resources/static/uploads/"/>-->
     <resources mapping="/resources/**" location="/resources/"/>
     <resources mapping="/static/**" location="classpath:/static/"/>
+<!--    <resources mapping="/uploads/**" location="classpath:/static/uploads/"/>-->
+
+
+
 
     <!-- JSP -->
     <!-- Remove this section to use ThymeLeaf instead of JSP -->

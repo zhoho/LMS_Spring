@@ -36,7 +36,7 @@ public class HomeController {
         return "login";
     }
 
-    @GetMapping("/course")
+    @GetMapping("/course/{id}")
     public String list(Model model) {
         List<Post> posts = postService.findPosts();
         List<Course> courses = postService.findCourse();
