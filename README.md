@@ -3,7 +3,9 @@
 ---
 
 ## 개발
-![Screenshot 2024-02-05 at 19.43.51.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2F18%2F09k9tqc92s7dyd4k384blt8m0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_mNYGV4%2FScreenshot%202024-02-05%20at%2019.43.51.png)
+
+<img width="988" alt="lms" src="https://github.com/zhoho/LMS_Spring/assets/71474242/73ab1760-bbe0-44fe-9851-1d995f13db4c">
+
 
 ## 개발 기간
 - 2024/01/12 ~ 2024/02/05
