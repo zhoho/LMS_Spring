@@ -13,13 +13,6 @@ import javax.sql.DataSource;
 
 @Configuration
 public class SpringConfig {
-
-//    private final EntityManager em;
-//
-//    @Autowired
-//    public SpringConfig(EntityManager em) {
-//        this.em = em;
-//    }
       private DataSource dataSource;
     @Autowired
     public SpringConfig(DataSource dataSource) {

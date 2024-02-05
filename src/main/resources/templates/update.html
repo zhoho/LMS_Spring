@@ -63,7 +63,7 @@
                 <h1>Practical Project1 01 > Practical Project1 01</h1>
             </div>
             <div class="write">Edit a post</div>
-            <form action="../../lms/editPost" method="post">
+            <form th:action="@{/editPost/{courseId}(courseId=${courseId})}" method="post">
                 <div class="title-bar">
                     <input type="text" name="title" th:value="${post.title}" />
                 </div>

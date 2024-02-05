@@ -63,28 +63,28 @@
                 <h1>Practical Project1 01 > Practical Project1 01</h1>
             </div>
             <div class="write">Write a post</div>
-            <form action="lms/savePost" method="post" enctype="multipart/form-data">
-            <div class="title-bar">
-                    <input type="text" name="title" />
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <label for="markdown-editor"></label><textarea id="markdown-editor"></textarea>
-                    <input type="hidden" name="content" id="hidden-content" />
+            <form th:action="@{/savePost/{courseId}(courseId=${currentCourseId})}" method="post" enctype="multipart/form-data">
+                <div class="title-bar">
+                        <input type="text" name="title" />
                 </div>
-            </div>
-            <div id="file-guide">Attatch a file</div>
-            <div class="file-input">
-                <input type="file" name="file" id="file-input"/>
-            </div>
-            <br />
-            <hr />
-            <div class="button">
-                <button class="cancel-btn">Cancel</button>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="markdown-editor"></label><textarea id="markdown-editor"></textarea>
+                        <input type="hidden" name="content" id="hidden-content" />
+                    </div>
+                </div>
+                <div id="file-guide">Attatch a file</div>
+                <div class="file-input">
+                    <input type="file" name="file" id="file-input"/>
+                </div>
+                <br />
+                <hr />
                 <div class="button">
-                    <button type="submit" class="save-btn">Save</button>
+                    <button class="cancel-btn">Cancel</button>
+                    <div class="button">
+                        <button type="submit" class="save-btn">Save</button>
+                    </div>
                 </div>
-            </div>
             </form>
         </main>
     </div>

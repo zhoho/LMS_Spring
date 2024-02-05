@@ -1,5 +1,6 @@
 package com.example.myapp.controller;
 
+import com.example.myapp.domain.Course;
 import com.example.myapp.domain.Post;
 import com.example.myapp.domain.PostFile;
 import com.example.myapp.service.PostService;
@@ -30,35 +31,21 @@ public class PostController {
         this.postService = postService;
     }
 
-    @PostMapping("lms/savePost")
-    public String savePost(@RequestParam String title, @RequestParam String content, @RequestParam("file") MultipartFile file) throws IOException {
+    @PostMapping("savePost/{id}")
+    public String savePost(@RequestParam String title, @RequestParam String content, @RequestParam("file") MultipartFile file,@PathVariable String id, Model model) throws IOException {
         LocalDateTime now = LocalDateTime.now();
         Timestamp timestamp = Timestamp.valueOf(now);
         Post post = new Post();
         post.setTitle(title);
         post.setContent(content);
         post.setDate(timestamp);
-
-//        PostFile postFile = new PostFile();
-//        if (!file.isEmpty()) {
-//            String fileName = file.getOriginalFilename();
-//            String filePath = "lms/uploads/" + fileName;
-//            long fileSize = file.getSize();
-//
-//            postFile.setFileName(fileName);
-//            postFile.setFilePath(filePath);
-//            postFile.setFileSize(fileSize);
-//            post.setFile(postFile);
-//        }
-
-        postService.join(post, file);
-        return "redirect:/course/1";
+        model.addAttribute("currentCourseId",id);
+        postService.join(post, file, Long.valueOf(id));
+        return "redirect:/course/" + id;
     }
 
-
-
-    @PostMapping("/lms/editPost")
-    public String editSavePost(@RequestParam Long id, @RequestParam String title, @RequestParam String content) {
+    @PostMapping("editPost/{courseId}")
+    public String editSavePost(@RequestParam Long id, @RequestParam String title, @RequestParam String content, @PathVariable String courseId, Model model) {
         LocalDateTime now = LocalDateTime.now();
         Timestamp timestamp = Timestamp.valueOf(now);
         Post post = new Post();
@@ -66,53 +53,90 @@ public class PostController {
         post.setTitle(title);
         post.setContent(content);
         post.setDate(timestamp);
+        model.addAttribute("currentCourseId",courseId);
         postService.update(post);
-        return "redirect:/course/1";
+        return "redirect:/course/" + courseId;
     }
 
 
-    @GetMapping("/post/{id}")
-    public String viewPost(@PathVariable Long id, Model model) {
-        Optional<Post> postOptional = postService.findOne(id);
+//    @GetMapping("post/{id}")
+//    public String viewPost(@PathVariable Long id, Model model) {
+//        Optional<Post> postOptional = postService.findOne(id);
+//        if (postOptional.isPresent()) {
+//            model.addAttribute("post", postOptional.get());
+//            Long prevPostId = postService.findPreviousPostId(id);
+//            Long nextPostId = postService.findNextPostId(id);
+//            model.addAttribute("prevPostId", prevPostId);
+//            model.addAttribute("isPrevPostAvailable", prevPostId != null);
+//            model.addAttribute("nextPostId", nextPostId);
+//            model.addAttribute("isNextPostAvailable", nextPostId != null);
+//        } else {
+//            return "redirect:/errorPage";
+//        }
+//        return "postDetail";
+//    }
+
+    @GetMapping("course/{courseId}/post/{postId}")
+    public String viewPost(@PathVariable Long courseId, @PathVariable Long postId, Model model) {
+        Optional<Post> postOptional = postService.findOne(postId);
         if (postOptional.isPresent()) {
-            model.addAttribute("post", postOptional.get());
-            Long prevPostId = postService.findPreviousPostId(id);
-            Long nextPostId = postService.findNextPostId(id);
-            model.addAttribute("prevPostId", prevPostId);
-            model.addAttribute("isPrevPostAvailable", prevPostId != null);
-            model.addAttribute("nextPostId", nextPostId);
-            model.addAttribute("isNextPostAvailable", nextPostId != null);
+            Post post = postOptional.get();
+            model.addAttribute("post", post);
+            model.addAttribute("courseId", courseId); // 모델에 courseId 추가
+            model.addAttribute("prevPostId", postService.findPreviousPostId(postId));
+            model.addAttribute("nextPostId", postService.findNextPostId(postId));
         } else {
             return "redirect:/errorPage";
         }
         return "postDetail";
     }
 
-    @GetMapping("/post/update/{id}")
-    public String updatePost(@PathVariable Long id, Model model) {
-        Optional<Post> postOptional = postService.findOne(id);
+//    @GetMapping("/post/update/{id}")
+//    public String updatePost(@PathVariable Long id, Model model) {
+//        Optional<Post> postOptional = postService.findOne(id);
+//        if (postOptional.isPresent()) {
+//            model.addAttribute("post", postOptional.get());
+//        } else {
+//            return "redirect:/errorPage";
+//        }
+//        return "update";
+//    }
+
+    @GetMapping("course/{courseId}/post/update/{postId}")
+    public String updatePost(@PathVariable Long courseId, @PathVariable Long postId, Model model) {
+        Optional<Post> postOptional = postService.findOne(postId);
         if (postOptional.isPresent()) {
             model.addAttribute("post", postOptional.get());
+            model.addAttribute("courseId", courseId); // courseId를 모델에 추가
         } else {
             return "redirect:/errorPage";
         }
         return "update";
     }
 
-    @PostMapping("/post/delete/{id}")
-    public String deletePost(@PathVariable Long id) {
-        postService.delete(id);
-        return "redirect:/course/1";
+//    @PostMapping("/post/delete/{id}")
+//    public String deletePost(@PathVariable Long id) {
+//        postService.delete(id);
+//        return "redirect:/course";
+//    }
+
+    @PostMapping("/course/{courseId}/post/delete/{postId}")
+    public String deletePost(@PathVariable Long courseId, @PathVariable Long postId) {
+        postService.delete(postId);
+        return "redirect:/course/" + courseId;
     }
 
-    @GetMapping("lms/search-posts")
+    @GetMapping("/search-posts")
     public String searchPosts(@RequestParam(required = false) String title, Model model) {
+        List<Course> courses = postService.findCourse();
+        model.addAttribute("courses", courses);
+
         if (title != null && !title.isEmpty()) {
             List<Post> posts = postService.findByTitleContaining(title);
             model.addAttribute("posts", posts);
         } else {
             model.addAttribute("posts", Collections.emptyList());
         }
-        return "course/1";
+        return "course";
     }
 }

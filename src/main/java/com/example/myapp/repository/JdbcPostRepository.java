@@ -42,29 +42,25 @@ public class JdbcPostRepository implements PostRepository {
     };
 
     @Override
-    public Post savePost(Post post) {
+    public Post savePost(Post post, Long courseId) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
         jdbcInsert.withTableName("qna").usingGeneratedKeyColumns("id");
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("title", post.getTitle());
         parameters.put("content", post.getContent());
         parameters.put("date", post.getDate());
+        parameters.put("course_id", courseId);
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
         post.setId(key.longValue());
         return post;
     }
-//    @Override
-//    public Optional<Post> findById(Long id) {
-//        List<Post> results = jdbcTemplate.query("SELECT * FROM qna WHERE id = ?", postRowMapper, id);
-//        return results.stream().findFirst();
-//    }
 
     @Override
     public Optional<Post> findById(Long id) {
         String sql = "SELECT p.*, f.fileName, f.filePath, f.fileSize FROM qna p LEFT JOIN qna_files f ON p.id = f.id WHERE p.id = ?";
         List<Post> results = jdbcTemplate.query(sql, new Object[]{id}, (rs, rowNum) -> {
             Post post = postRowMapper.mapRow(rs, rowNum);
-            if (rs.getString("fileName") != null) { // 파일 정보가 있는 경우
+            if (rs.getString("fileName") != null) {
                 PostFile file = new PostFile();
                 file.setFileName(rs.getString("fileName"));
                 file.setFilePath(rs.getString("filePath"));
@@ -77,9 +73,15 @@ public class JdbcPostRepository implements PostRepository {
     }
 
     @Override
+    public List<Post> findByCourseId(Long courseId) {
+        String sql = "SELECT * FROM qna WHERE course_id = ?";
+        return jdbcTemplate.query(sql, postRowMapper, courseId);
+    }
+
+    @Override
     public List<Post> findByTitle(String title) {
         String query = "%" + title + "%";
-        return jdbcTemplate.query("SELECT * FROM posts WHERE title LIKE ?", postRowMapper, query);
+        return jdbcTemplate.query("SELECT * FROM qna WHERE title LIKE ?", postRowMapper, query);
     }
 
 

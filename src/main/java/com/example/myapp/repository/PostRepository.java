@@ -8,8 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PostRepository {
-    Post savePost(Post post);
+    Post savePost(Post post, Long courseId);
     Optional<Post> findById(Long postId);
+
+    List<Post> findByCourseId(Long courseId);
+
     List<Post> findByTitle(String title);
     List<Post> findAll();
     List<Course> findAllCourse();

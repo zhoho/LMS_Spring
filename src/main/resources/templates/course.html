@@ -63,27 +63,26 @@
             </div>
             <div class="button-container">
                 <div class="search-bar">
-                    <form action="lms/search-posts" method="get" class="search-form">
+                    <form action="/lms/search-posts" method="get" class="search-form">
                         <input type="text" id="search-input" name="title" placeholder="Title" />
                         <button type="submit" id="search-button" class="search-btn">Search</button>
                     </form>
                 </div>
-                <button class="write-btn">+ Write</button>
+                <a th:href="@{/write/{courseId}(courseId=${currentCourseId})}" class="btn btn-primary">+ Write</a>
             </div>
-            <div class="post-list">
-                <div th:each="post : ${posts}" class="post-item">
-                    <a th:href="@{/post/{id}(id=${post.id})}" class="post-link">
-                        <div class="content-container">
-                            <div class="content-left">
-                                <p th:text="${post.title}" class="title">Title</p>
-                                <p th:text="${post.content}" class="content">Content</p>
-                            </div>
-                            <div class="content-right">
-                                <p class="date" th:text="${#dates.format(post.date, 'MMMM d')}">Date</p>
-                            </div>
+            <div th:each="post : ${posts}" class="post-item">
+                <a th:href="@{/course/{courseId}/post/{postId}(courseId=${currentCourseId}, postId=${post.id})}" class="post-link">
+                    <div class="content-container">
+                        <div class="content-left">
+                            <p th:text="${post.title}" class="title">Title</p>
+                            <p th:text="${post.content}" class="content">Content</p>
                         </div>
-                    </a>
-                </div>
+                        <div class="content-right">
+                            <p class="date" th:text="${#dates.format(post.date, 'MMMM d')}">Date</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
                 <p th:if="${#lists.isEmpty(posts)}">No posts are registered.</p>
             </div>
         </main>

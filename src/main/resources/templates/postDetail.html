@@ -9,7 +9,7 @@
   <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js}"></script>
   <title>Course</title>
 </head>
-<body style="overflow: hidden">
+<body style="overflow:auto">
 <div class="container-fluid">
   <div class="row"> <!-- 'a' 태그 대신 'div' 태그로 변경 -->
     <nav class="d-none d-md-block sidebar">
@@ -36,9 +36,11 @@
               <h4>Courses</h4>
             </div>
             <div class="course-list">
-              <div th:each="course : ${courses}" class="course-item">
-                <div class="course-title" th:text="${course.name}">Course Name</div>
-                <div class="course-subtitle" th:text="${course.semester}">Course Semester</div>
+              <div th:each="course : ${courses}" class="course-item" th:onclick="'window.location.href=\'' + @{/course/{id}(id=${course.id})} + '\''">
+                <div class="course-title" th:text="${course.name}">
+                </div>
+                <div class="course-subtitle" th:text="${course.semester}">
+                </div>
               </div>
             </div>
           </div>
@@ -60,10 +62,10 @@
       </div>
       <div>
         <div class="action-bar">
-          <button class="goto-list-btn" th:onclick="'location.href=\'' + @{/course/1} + '\''">Go To List</button>
+          <button class="goto-list-btn" th:onclick="'location.href=\'' + @{/course/{courseId}(courseId=${courseId})} + '\''">Go To List</button>
           <div>
-            <button class="update-btn" th:onclick="'location.href=\'' + @{/post/update/{id}(id=${post.id})} + '\''">Edit</button>
-            <form th:action="@{/post/delete/{id}(id=${post.id})}" method="post" style="display: inline;">
+            <button class="update-btn" th:onclick="'location.href=\'' + @{/course/{courseId}/post/update/{postId}(courseId=${courseId}, postId=${post.id})} + '\''">Edit</button>
+            <form th:action="@{/course/{courseId}/post/delete/{postId}(courseId=${courseId}, postId=${post.id})}" method="post" style="display: inline;">
               <input type="hidden" name="_method" value="delete" />
               <button type="submit" class="delete-btn">Delete</button>
             </form>

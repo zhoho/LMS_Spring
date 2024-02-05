@@ -30,7 +30,7 @@ public class PostService{
         this.postRepository = postRepository;
     }
 
-    public void join(Post post, MultipartFile file) throws IOException {
+    public void join(Post post, MultipartFile file, Long courseId) throws IOException {
         if (!file.isEmpty()) {
             String filePath = "/Users/choejiho/Downloads/LMS_Spring/src/main/resources/static/uploads";
             UUID uuid = UUID.randomUUID();
@@ -46,7 +46,7 @@ public class PostService{
             post.setFile(postFile);
             postRepository.saveFile(postFile);
         }
-        postRepository.savePost(post); // Post 저장
+        postRepository.savePost(post, courseId); // Post 저장
     }
 
 
@@ -78,10 +78,13 @@ public class PostService{
         return postRepository.deleteById(id);
     }
 
-    public Post savePost(Post post) {
-        return postRepository.savePost(post);
+    public Post savePost(Post post, Long courseId) {
+        return postRepository.savePost(post, courseId);
     }
 
+    public List<Post> findByCourseId(Long courseId) {
+        return postRepository.findByCourseId(courseId);
+    }
     public Optional<Post> findById(Long id) {
         return postRepository.findById(id);
     }

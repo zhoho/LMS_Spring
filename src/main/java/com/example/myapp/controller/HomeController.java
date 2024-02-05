@@ -1,21 +1,17 @@
 package com.example.myapp.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.example.myapp.domain.Course;
 import com.example.myapp.domain.Post;
 import com.example.myapp.service.PostService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
-//@Slf4j
 public class HomeController {
 
     private final PostService postService;
@@ -37,16 +33,19 @@ public class HomeController {
     }
 
     @GetMapping("/course/{id}")
-    public String list(Model model) {
-        List<Post> posts = postService.findPosts();
+    public String list(Model model, @PathVariable String id) {
+        List<Post> posts = postService.findByCourseId(Long.valueOf(id));
         List<Course> courses = postService.findCourse();
         model.addAttribute("posts", posts);
         model.addAttribute("courses", courses);
+        model.addAttribute("currentCourseId", id);
         return "course";
     }
-    @GetMapping("/write")
-    public String write() {
+    @GetMapping("/write/{id}")
+    public String write(Model model, @PathVariable String id) {
+        List<Course> courses = postService.findCourse();
+        model.addAttribute("courses", courses);
+        model.addAttribute("currentCourseId", id);
         return "write";
     }
-
 }
