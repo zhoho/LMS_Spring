@@ -46,7 +46,7 @@ public class PostService{
             post.setFile(postFile);
             postRepository.saveFile(postFile);
         }
-        postRepository.savePost(post, courseId); // Post 저장
+        postRepository.savePost(post, courseId);
     }
 
 
